@@ -1,0 +1,107 @@
+{% extends "layout_app.html" %}
+{% block title %}Home{% endblock %}
+
+
+
+
+{% block content %}
+<!-- Blog Posts Section -->
+<div class="container mt-5">
+    <div class="row mb-4">
+        <div class="col-md-8">
+            <h1 class="font-weight-bold text-primary">Latest Posts</h1>
+            <p class="text-muted">Stay updated with our newest content and insights</p>
+        </div>
+        <div class="col-md-4 text-right d-flex align-items-center justify-content-end">
+            <form method="POST" action="{% url 'search_post' %}">
+                {% csrf_token %}
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Search posts..." name="search">
+                <div class="input-group-append">
+                    <button class="btn btn-primary" type="submit">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+                
+            </div>
+        </form>
+        </div>
+    </div>
+    <a href="{% url 'create_post'%}" class="btn btn-primary px-4">Create Post <i class="fas fa-arrow-right ml-1"></i></a>
+    <!-- Featured Post -->
+    {% with post=posts.0 %}
+    <div class="row mb-5">
+        <div class="col-lg-12">
+            <div class="card shadow-sm border-0 overflow-hidden">
+                <div class="row no-gutters">
+                    <div class="col-md-6">
+                        {% if post.photo %}
+                        <img src="{{ post.photo.url }}" class="card-img" alt="{{ post.title }}" style="height: 100%; object-fit: cover;">
+                        {% else %}
+                        <img src="https://via.placeholder.com/800x500" class="card-img" alt="Placeholder" style="height: 100%; object-fit: cover;">
+                        {% endif %}
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card-body d-flex flex-column h-100">
+                            <div class="mb-3">
+                                <span class="badge badge-primary">Latest</span>
+                                <span class="text-muted ml-2"><i class="far fa-calendar-alt"></i> {{ post.date_added|date:"F d, Y" }}</span>
+                            </div>
+                            <h2 class="card-title font-weight-bold mb-3">{{ post.title }}</h2>
+                            <p class="card-text">{{ post.body|truncatewords:50 }}</p>
+                            <div class="mt-auto">
+                                <div class="d-flex align-items-center mb-3">
+                                    <div>
+                                        <p class="mb-0 font-weight-bold">{{ post.author.get_full_name|default:post.author.username }}</p>
+                                        <small class="text-muted">Author</small>
+                                    </div>
+                                </div>
+                                <a href="{% url 'view_post' post.pk%}" class="btn btn-primary px-4">Read More <i class="fas fa-arrow-right ml-1"></i></a>
+                                {% if post.author == user %}
+                                <a href="{% url 'edit_post' post.pk%}" class="btn btn-primary px-4">Edit<i class="fas fa-arrow-right ml-1"></i></a>
+                                <a href="{% url 'delete_post' post.pk%}" class="btn btn-outline-danger btn-sm">Delete Post</a>
+                            {% endif %}
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endwith %}
+
+    <!-- Post Grid -->
+    <div class="row">
+        {% for post in posts|slice:"1:" %}
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card h-100 shadow-sm border-0">
+                {% if post.photo %}
+                <img src="{{ post.photo.url }}" class="card-img-top" alt="{{ post.title }}" style="height: 200px;">
+                {% else %}
+                <img src="https://via.placeholder.com/400x300" class="card-img-top" alt="Placeholder" style="height: 200px; object-fit: cover;">
+                {% endif %}
+                <div class="card-body d-flex flex-column">
+                    <div class="mb-2">
+                        <span class="text-muted small"><i class="far fa-calendar-alt"></i> {{ post.date_added|date:"F d, Y" }}</span>
+                    </div>
+                    <h5 class="card-title font-weight-bold">{{ post.title }}</h5>
+                    <p class="card-text">{{ post.body|truncatewords:20 }}</p>
+                    <div class="mt-auto">
+                        <div class="d-flex align-items-center mb-3">
+                            <small class="text-muted">{{ post.author.get_full_name|default:post.author.username }}</small>
+                        </div>
+                        <a href="{% url 'view_post' post.pk%}" class="btn btn-outline-primary btn-sm">Read More</a>
+                        {% if post.author == user %}
+                        <a href="{% url 'edit_post' post.pk%}" class="btn btn-outline-primary btn-sm">Edit Post</a>
+                        <a href="{% url 'delete_post' post.pk%}" class="btn btn-outline-danger btn-sm">Delete Post</a>
+                   {% endif %}
+                         </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}
+
+

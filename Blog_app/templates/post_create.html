@@ -1,0 +1,137 @@
+{% extends "layout_app.html" %}
+
+{% block title %}Create New Post{% endblock %}
+
+{% block content %}
+
+
+
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card shadow-sm border-0 rounded-lg">
+                <div class="card-header bg-white py-4">
+                    <h3 class="font-weight-bold text-center mb-0">
+                        <i class="fas fa-pen-fancy mr-2 text-primary"></i>Create New Post
+                    </h3>
+                </div>
+                <div class="card-body p-4">
+                    <form method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        
+                        <!-- Title Field -->
+                        <div class="form-group">
+                            <label for="post-title" class="font-weight-bold">
+                                <i class="fas fa-heading mr-2 text-primary"></i>Title
+                            </label>
+                            {% if post %}<input type="text" class="form-control rounded-pill" id="post-title" name="title" placeholder="Enter post title" value="{{post.title}}" required>
+                            {% else %}
+                            <input type="text" class="form-control rounded-pill" id="post-title" name="title" placeholder="Enter post title" required>
+                        
+                            {% endif %}
+                            </div>
+                        
+                        <!-- Photo Upload Field -->
+                        {% comment %} <div class="form-group">
+                            <label for="post-photo" class="font-weight-bold">
+                                <i class="fas fa-image mr-2 text-primary"></i>Featured Image
+                            </label>
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="post-photo" name="photo" accept="image/*">
+                                <label class="custom-file-label rounded-pill" for="post-photo">Choose an image</label>
+                            </div>
+                            <small class="form-text text-muted">Optional: Add a featured image to your post</small>
+                        </div> {% endcomment %}
+
+
+
+
+
+
+
+
+                        <!-- Photo Upload Field -->
+                    <div class="form-group">
+                        <label for="post-photo" class="font-weight-bold">
+                            <i class="fas fa-image mr-2 text-primary"></i>Featured Image
+                        </label>
+
+                        <!-- Display existing image if post.photo exists -->
+                        {% if post and post.photo %}
+                            <div class="text-center">
+                                <img id="image-preview" src="{{ post.photo.url }}" class="img-fluid rounded shadow-sm" style="max-height: 200px">
+                                <p class="text-muted mt-2">Current Featured Image</p>
+                            </div>
+                        {% else %}
+                            <div id="image-preview-container" class="text-center d-none">
+                                <p class="mb-2 font-weight-bold text-primary"><i class="fas fa-eye mr-1"></i>Preview</p>
+                                <img id="image-preview" class="img-fluid rounded shadow-sm" style="max-height: 200px">
+                            </div>
+                        {% endif %}
+
+                        <div class="custom-file mt-2">
+                            <input type="file" class="custom-file-input" id="post-photo" name="photo" accept="image/*">
+                            <label class="custom-file-label rounded-pill" for="post-photo">Choose an image</label>
+                        </div>
+                        <small class="form-text text-muted">Optional: Add a featured image to your post</small>
+                    </div>
+
+                        
+                        <!-- Body Content Field -->
+                        <div class="form-group">
+                            <label for="post-body" class="font-weight-bold">
+                                <i class="fas fa-paragraph mr-2 text-primary"></i>Content
+                            </label>
+                            
+                            <textarea class="form-control" id="post-body" name="body" rows="8" placeholder="Write your post content here..." required>{% if post %}{{ post.body }}{% endif %}</textarea>
+                           
+                           
+                           
+                       </div>
+                        
+                        <!-- Form Actions -->
+                        <div class="d-flex justify-content-between align-items-center mt-4">
+                            <a href="{% url 'Home' %}" class="btn btn-outline-secondary rounded-pill px-4">
+                                <i class="fas fa-arrow-left mr-2"></i>Cancel
+                            </a>
+                            <button type="submit" class="btn btn-primary rounded-pill px-5">
+                                <i class="fas fa-paper-plane mr-2"></i>Publish Post
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                <div class="card-footer bg-white text-center py-3">
+                    <small class="text-muted">
+                        <i class="fas fa-info-circle mr-1"></i>
+                        Posts will appear with your username as the author
+                    </small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Preview Image Section (When image is selected) -->
+<script>
+    document.querySelector('.custom-file-input').addEventListener('change', function(e) {
+        var fileName = e.target.files[0].name;
+        var label = document.querySelector('.custom-file-label');
+        label.innerHTML = fileName;
+    
+        // Show image preview
+        var reader = new FileReader();
+        reader.onload = function(e) {
+            var previewContainer = document.getElementById('image-preview-container');
+            var preview = document.getElementById('image-preview');
+            
+            if (preview) {
+                preview.src = e.target.result;
+                previewContainer.classList.remove('d-none');  // Show container if it was hidden
+            }
+        };
+        reader.readAsDataURL(e.target.files[0]);
+    });
+    
+</script>
+{% endblock %}

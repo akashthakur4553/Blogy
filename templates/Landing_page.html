@@ -1,0 +1,442 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Our Blog</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        .hover-shadow {
+            transition: all 0.3s ease;
+        }
+        .hover-shadow:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
+        }
+        .transition {
+            transition: all 0.3s ease;
+        }
+    </style>
+</head>
+<body class="bg-light d-flex flex-column min-vh-100">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+        <div class="container">
+            <a class="navbar-brand font-weight-bold text-primary" href="{% url "Home"%}">
+                <i class="fas fa-cube mr-2"></i>YourBrand
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/features">Features</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/contact">Contact</a>
+                    </li>
+                </ul>
+                <div class="navbar-nav">
+                    <a class="nav-item nav-link" href="{% url "login_view"%}">
+                        <i class="fas fa-sign-in-alt mr-1"></i>Login
+                    </a>
+                    <a class="nav-item nav-link btn btn-primary text-white ml-2 rounded-pill px-3" href="{% url "register" %}">
+                        <i class="fas fa-user-plus mr-1"></i>Register
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="flex-grow-1">
+        <!-- Hero Section -->
+        <section class="py-5 bg-primary text-white">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6 mb-5 mb-lg-0">
+                        <h1 class="display-4 font-weight-bold mb-3">Discover Stories That Matter</h1>
+                        <p class="lead mb-4">Insights, ideas, and perspectives from our community of thinkers and creators.</p>
+                        <div class="d-flex flex-wrap">
+                            <a href="/features" class="btn btn-light btn-lg px-4 mr-3 mb-3 mb-md-0 rounded-pill">
+                                <i class="fas fa-book-open mr-2"></i>Explore Articles
+                            </a>
+                            <a href="/register" class="btn btn-outline-light btn-lg px-4 rounded-pill">
+                                <i class="fas fa-user-plus mr-2"></i>Join Us
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="shadow rounded bg-white p-1">
+                            <img src="https://via.placeholder.com/600x400" alt="Blog hero image" class="img-fluid rounded">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Categories -->
+        <section class="py-5 bg-white">
+            <div class="container">
+                <div class="text-center mb-5">
+                    <h2 class="font-weight-bold">Explore Categories</h2>
+                    <p class="text-muted">Dive into topics that interest you the most</p>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 mb-4">
+                        <div class="card h-100 border-0 shadow-sm hover-shadow transition">
+                            <div class="card-body text-center py-4">
+                                <div class="icon-box mb-3 mx-auto bg-light rounded-circle p-3" style="width: 80px; height: 80px;">
+                                    <i class="fas fa-laptop-code fa-2x text-primary"></i>
+                                </div>
+                                <h4 class="card-title font-weight-bold">Technology</h4>
+                                <p class="card-text text-muted">Latest trends and innovations in the tech world</p>
+                                <a href="#" class="btn btn-sm btn-outline-primary rounded-pill mt-2">
+                                    View Articles <i class="fas fa-arrow-right ml-1"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <div class="card h-100 border-0 shadow-sm hover-shadow transition">
+                            <div class="card-body text-center py-4">
+                                <div class="icon-box mb-3 mx-auto bg-light rounded-circle p-3" style="width: 80px; height: 80px;">
+                                    <i class="fas fa-paint-brush fa-2x text-primary"></i>
+                                </div>
+                                <h4 class="card-title font-weight-bold">Creativity</h4>
+                                <p class="card-text text-muted">Art, design, and creative inspiration for everyone</p>
+                                <a href="#" class="btn btn-sm btn-outline-primary rounded-pill mt-2">
+                                    View Articles <i class="fas fa-arrow-right ml-1"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <div class="card h-100 border-0 shadow-sm hover-shadow transition">
+                            <div class="card-body text-center py-4">
+                                <div class="icon-box mb-3 mx-auto bg-light rounded-circle p-3" style="width: 80px; height: 80px;">
+                                    <i class="fas fa-brain fa-2x text-primary"></i>
+                                </div>
+                                <h4 class="card-title font-weight-bold">Personal Growth</h4>
+                                <p class="card-text text-muted">Insights for self-improvement and development</p>
+                                <a href="#" class="btn btn-sm btn-outline-primary rounded-pill mt-2">
+                                    View Articles <i class="fas fa-arrow-right ml-1"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Posts -->
+        <section class="py-5 bg-light">
+            <div class="container">
+                <div class="d-flex align-items-center justify-content-between mb-4">
+                    <h2 class="font-weight-bold mb-0">Featured Articles</h2>
+                    <a href="/features" class="btn btn-outline-primary rounded-pill">
+                        View All <i class="fas fa-arrow-right ml-1"></i>
+                    </a>
+                </div>
+                <div class="row">
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="card h-100 border-0 shadow-sm hover-shadow transition">
+                            <img src="https://via.placeholder.com/400x200" class="card-img-top" alt="Article image">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center mb-2">
+                                    <span class="badge badge-pill badge-primary px-3 py-1 mr-2">Technology</span>
+                                    <small class="text-muted">Feb 20, 2025</small>
+                                </div>
+                                <h5 class="card-title font-weight-bold">The Future of AI in Everyday Life</h5>
+                                <p class="card-text text-muted">Exploring how artificial intelligence will continue to transform our daily experiences in the coming years...</p>
+                            </div>
+                            <div class="card-footer bg-transparent border-0 pt-0">
+                                <div class="d-flex align-items-center">
+                                    <img src="https://via.placeholder.com/40x40" alt="Author" class="rounded-circle mr-2" width="32" height="32">
+                                    <small class="font-weight-bold">John Doe</small>
+                                    <div class="ml-auto">
+                                        <a href="#" class="btn btn-sm btn-outline-primary rounded-pill">Read More</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="card h-100 border-0 shadow-sm hover-shadow transition">
+                            <img src="https://via.placeholder.com/400x200" class="card-img-top" alt="Article image">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center mb-2">
+                                    <span class="badge badge-pill badge-primary px-3 py-1 mr-2">Creativity</span>
+                                    <small class="text-muted">Feb 18, 2025</small>
+                                </div>
+                                <h5 class="card-title font-weight-bold">Minimalist Design Principles for Your Home</h5>
+                                <p class="card-text text-muted">Learn how to apply minimalist design principles to create a calming and functional living space...</p>
+                            </div>
+                            <div class="card-footer bg-transparent border-0 pt-0">
+                                <div class="d-flex align-items-center">
+                                    <img src="https://via.placeholder.com/40x40" alt="Author" class="rounded-circle mr-2" width="32" height="32">
+                                    <small class="font-weight-bold">Sarah Johnson</small>
+                                    <div class="ml-auto">
+                                        <a href="#" class="btn btn-sm btn-outline-primary rounded-pill">Read More</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="card h-100 border-0 shadow-sm hover-shadow transition">
+                            <img src="https://via.placeholder.com/400x200" class="card-img-top" alt="Article image">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center mb-2">
+                                    <span class="badge badge-pill badge-primary px-3 py-1 mr-2">Personal Growth</span>
+                                    <small class="text-muted">Feb 15, 2025</small>
+                                </div>
+                                <h5 class="card-title font-weight-bold">Building Resilience in Challenging Times</h5>
+                                <p class="card-text text-muted">Practical strategies to develop mental strength and navigate through life's unexpected challenges...</p>
+                            </div>
+                            <div class="card-footer bg-transparent border-0 pt-0">
+                                <div class="d-flex align-items-center">
+                                    <img src="https://via.placeholder.com/40x40" alt="Author" class="rounded-circle mr-2" width="32" height="32">
+                                    <small class="font-weight-bold">Michael Chen</small>
+                                    <div class="ml-auto">
+                                        <a href="#" class="btn btn-sm btn-outline-primary rounded-pill">Read More</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Newsletter Section -->
+        <section class="py-5 bg-primary text-white">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8 text-center">
+                        <h2 class="font-weight-bold mb-3">Stay Updated</h2>
+                        <p class="lead mb-4">Subscribe to our newsletter to receive the latest articles, tips, and insights directly in your inbox.</p>
+                        <form class="mb-3">
+                            <div class="input-group input-group-lg">
+                                <input type="email" class="form-control" placeholder="Your email address">
+                                <div class="input-group-append">
+                                    <button class="btn btn-light" type="submit">
+                                        <i class="fas fa-paper-plane mr-2"></i>Subscribe
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                        <small class="text-light">We respect your privacy. Unsubscribe at any time.</small>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials -->
+        <section class="py-5 bg-white">
+            <div class="container">
+                <div class="text-center mb-5">
+                    <h2 class="font-weight-bold">What Our Readers Say</h2>
+                    <p class="text-muted">Join our community of passionate readers and contributors</p>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 mb-4 mb-md-0">
+                        <div class="card h-100 border-0 shadow-sm p-4">
+                            <div class="d-flex align-items-center mb-4">
+                                <div class="text-warning">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                            <p class="font-italic mb-4">"The articles on this blog have been incredibly insightful. I've learned so much and applied several ideas to my daily life. Highly recommended!"</p>
+                            <div class="d-flex align-items-center mt-auto">
+                                <img src="https://via.placeholder.com/50x50" alt="Testimonial" class="rounded-circle mr-3" width="50" height="50">
+                                <div>
+                                    <h6 class="font-weight-bold mb-0">Emily Rodriguez</h6>
+                                    <small class="text-muted">Marketing Professional</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-4 mb-md-0">
+                        <div class="card h-100 border-0 shadow-sm p-4">
+                            <div class="d-flex align-items-center mb-4">
+                                <div class="text-warning">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                            <p class="font-italic mb-4">"I've been following this blog for over a year now. The quality of content is consistently excellent, and I always find something new to learn or think about."</p>
+                            <div class="d-flex align-items-center mt-auto">
+                                <img src="https://via.placeholder.com/50x50" alt="Testimonial" class="rounded-circle mr-3" width="50" height="50">
+                                <div>
+                                    <h6 class="font-weight-bold mb-0">David Wilson</h6>
+                                    <small class="text-muted">Software Engineer</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card h-100 border-0 shadow-sm p-4">
+                            <div class="d-flex align-items-center mb-4">
+                                <div class="text-warning">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                            <p class="font-italic mb-4">"What sets this blog apart is the thoughtful analysis and practical advice. It's not just information—it's knowledge you can actually use in your life."</p>
+                            <div class="d-flex align-items-center mt-auto">
+                                <img src="https://via.placeholder.com/50x50" alt="Testimonial" class="rounded-circle mr-3" width="50" height="50">
+                                <div>
+                                    <h6 class="font-weight-bold mb-0">Aisha Patel</h6>
+                                    <small class="text-muted">UX Designer</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="py-5 bg-light">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-8 mb-4 mb-lg-0">
+                        <h2 class="font-weight-bold mb-3">Ready to start your journey?</h2>
+                        <p class="lead mb-0">Join our community of readers and writers today. Start exploring or share your own stories.</p>
+                    </div>
+                    <div class="col-lg-4 text-lg-right">
+                        <a href="/register" class="btn btn-primary btn-lg rounded-pill px-4 mr-3">
+                            <i class="fas fa-user-plus mr-2"></i>Sign Up
+                        </a>
+                        <a href="/about" class="btn btn-outline-primary btn-lg rounded-pill px-4">
+                            Learn More
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white py-4 shadow-lg mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <h5 class="text-primary font-weight-bold">
+                        <i class="fas fa-cube mr-2"></i>YourBrand
+                    </h5>
+                    <p class="text-muted">
+                        Creating innovative solutions for your everyday needs. Join our community today!
+                    </p>
+                    <div class="d-flex">
+                        <a href="#" class="text-primary mr-3"><i class="fab fa-facebook-f fa-lg"></i></a>
+                        <a href="#" class="text-primary mr-3"><i class="fab fa-twitter fa-lg"></i></a>
+                        <a href="#" class="text-primary mr-3"><i class="fab fa-instagram fa-lg"></i></a>
+                        <a href="#" class="text-primary"><i class="fab fa-linkedin-in fa-lg"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-6 mb-4 mb-md-0">
+                    <h6 class="text-dark font-weight-bold mb-3">Company</h6>
+                    <ul class="list-unstyled mb-0">
+                        <li class="mb-2"><a href="#" class="text-muted">About Us</a></li>
+                        <li class="mb-2"><a href="#" class="text-muted">Careers</a></li>
+                        <li class="mb-2"><a href="#" class="text-muted">News</a></li>
+                        <li><a href="#" class="text-muted">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-4 col-6 mb-4 mb-md-0">
+                    <h6 class="text-dark font-weight-bold mb-3">Resources</h6>
+                    <ul class="list-unstyled mb-0">
+                        <li class="mb-2"><a href="#" class="text-muted">Blog</a></li>
+                        <li class="mb-2"><a href="#" class="text-muted">Documentation</a></li>
+                        <li class="mb-2"><a href="#" class="text-muted">Help Center</a></li>
+                        <li><a href="#" class="text-muted">Community</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-4 col-6 mb-4 mb-md-0">
+                    <h6 class="text-dark font-weight-bold mb-3">Legal</h6>
+                    <ul class="list-unstyled mb-0">
+                        <li class="mb-2"><a href="#" class="text-muted">Privacy Policy</a></li>
+                        <li class="mb-2"><a href="#" class="text-muted">Terms of Service</a></li>
+                        <li class="mb-2"><a href="#" class="text-muted">Cookie Policy</a></li>
+                        <li><a href="#" class="text-muted">Compliance</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-4 col-6">
+                    <h6 class="text-dark font-weight-bold mb-3">Support</h6>
+                    <ul class="list-unstyled mb-0">
+                        <li class="mb-2"><a href="#" class="text-muted">FAQ</a></li>
+                        <li class="mb-2"><a href="#" class="text-muted">Live Chat</a></li>
+                        <li class="mb-2"><a href="#" class="text-muted">Phone Support</a></li>
+                        <li><a href="#" class="text-muted">Tickets</a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="my-4">
+            <div class="row align-items-center">
+                <div class="col-md-6 text-center text-md-left mb-3 mb-md-0">
+                    <p class="text-muted mb-0">© 2025 YourBrand. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-right">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-globe mr-1"></i> English
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a class="dropdown-item" href="#">English</a>
+                            <a class="dropdown-item" href="#">Spanish</a>
+                            <a class="dropdown-item" href="#">French</a>
+                            <a class="dropdown-item" href="#">German</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script>
+        // You can add any landing page specific JavaScript here
+        $(document).ready(function() {
+            // Smooth scrolling for anchor links
+            $('a[href*="#"]').not('[href="#"]').not('[href="#0"]').click(function(event) {
+                if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && 
+                    location.hostname == this.hostname) {
+                    var target = $(this.hash);
+                    target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+                    if (target.length) {
+                        event.preventDefault();
+                        $('html, body').animate({
+                            scrollTop: target.offset().top - 70
+                        }, 1000);
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
