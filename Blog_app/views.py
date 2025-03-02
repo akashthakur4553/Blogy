@@ -86,7 +86,7 @@ def view_post(request, post_id):
 def search_post(request):
     if request.method == "POST":
         search = request.POST["search"]
-        posts = Posts.objects.filter(title__contains=search)
+        posts = Posts.objects.filter(title__icontains=search)
         return render(request, "search_posts.html", {"posts": posts})
 
     return render(request, "search_posts.html")
